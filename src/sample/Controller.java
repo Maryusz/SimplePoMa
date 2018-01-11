@@ -59,6 +59,7 @@ public class Controller implements Initializable{
         Research microResearch = fileLoader.research(strToSearch.toUpperCase(), false);
         Research macroResearch = fileLoader.research(strToSearch.toUpperCase(), true);
 
+
         microResearch.exclude("PA0001");
         microResearch.exclude("RO0001");
         microResearch.exclude("AC0001");
@@ -75,6 +76,7 @@ public class Controller implements Initializable{
     private void initPieChart(Research research) {
 
         ObservableList<PieChart.Data> data = FXCollections.observableArrayList();
+
         research.getResults()
                 .forEach((s,i) -> data.add(new PieChart.Data(s, i)));
         mainChart.setData(data);
@@ -90,8 +92,11 @@ public class Controller implements Initializable{
         research.getResults()
                 .forEach((s,i) -> data.getData().add(new XYChart.Data(s, i)));
 
+        if (lateralChart.getData().size() > 0) {
+            lateralChart.getData().remove(0);
+        }
         lateralChart.getData().add(data);
-    }
+}
 
     @FXML
     void search(ActionEvent event) {

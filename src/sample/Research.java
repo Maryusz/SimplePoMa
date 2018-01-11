@@ -3,15 +3,20 @@ package sample;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
+import java.util.Comparator;
+import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
+import java.util.stream.Collector;
 
 public class Research {
     //Rappresenta il risultato della ricerca
     private StringProperty mlfbPart;
 
     // Map che contiene Poma: quantita di risultati
-    private ConcurrentMap<String, Integer> results;
+    private SortedMap<String, Integer> results;
+
 
     public String getMlfbPart() {
         return mlfbPart.get();
@@ -27,7 +32,8 @@ public class Research {
 
     public Research(String mlfbPart) {
         this.mlfbPart  = new SimpleStringProperty(this, "mlfbPart", mlfbPart);
-        results = new ConcurrentHashMap<>();
+        results = new TreeMap<>();
+
     }
 
     public synchronized void addResult(String poma){
@@ -42,12 +48,14 @@ public class Research {
         results.remove(poma);
     }
 
+
     public int getNumberOfPiecesFounded(){
         return results.values().stream().reduce(0, (n, nn) -> n + nn);
     }
 
-    public ConcurrentMap<String, Integer> getResults() {
+    public SortedMap<String, Integer> getResults() {
         return results;
+
     }
 
     public void printResearch() {

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+
+<BorderPane fx:id="root" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <top>
+      <HBox alignment="CENTER" spacing="45.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="mlfbField" promptText="Inserisci MLFB" />
+            <Button mnemonicParsing="false" onAction="#chooseFile" text="Carica file PoMa" />
+         </children>
+      </HBox>
+   </top>
+   <center>
+      <SplitPane dividerPositions="0.5" BorderPane.alignment="CENTER">
+         <items>
+            <PieChart fx:id="mainChart" />
+            <BarChart fx:id="lateralChart">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" fx:id="xAxis" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis fx:id="yAxis" side="LEFT" />
+              </yAxis>
+            </BarChart>
+         </items>
+      </SplitPane>
+   </center>
+   <bottom>
+      <Button mnemonicParsing="false" onAction="#search" text="Cerca" BorderPane.alignment="CENTER" />
+   </bottom>
+</BorderPane>

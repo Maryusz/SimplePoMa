@@ -3,10 +3,7 @@ package sample;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-import java.util.Comparator;
-import java.util.Map;
-import java.util.SortedMap;
-import java.util.TreeMap;
+import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collector;
 
@@ -45,7 +42,16 @@ public class Research {
     }
 
     public void exclude(String poma) {
-        results.remove(poma);
+
+        Iterator<Map.Entry<String, Integer>> it = results.entrySet().iterator();
+
+        while (it.hasNext()) {
+            String key = it.next().getKey();
+
+            if (key.startsWith(poma) || key.equals("")) {
+                it.remove();
+            }
+        }
     }
 
 

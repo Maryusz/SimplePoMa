@@ -11,18 +11,13 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setTitle("Simple PoMa");
+        primaryStage.setScene(new Scene(root));
         primaryStage.show();
     }
 
 
     public static void main(String[] args) {
         launch(args);
-        /*FileLoader fl = new FileLoader("C:\\Users\\Mariusz\\Downloads\\QryEstraiPoMa (70).csv");
-        Research r= fl.research("6SN1118", false);
-        r.printResearch();
-        System.out.println("Totale: " + r.getNumberOfPiecesFounded() );*/
-
     }
 }

@@ -42,11 +42,11 @@ public class FileLoader {
                 .collect(Collectors.toList());
     }
 
-    public Research research(String mlfb, boolean macro){
+    public Research research(String mlfb, boolean macro, boolean generic){
         Research r = new Research(mlfb);
         data.parallelStream()
                 .forEach(list -> {
-                    if (list.get(4).contains(mlfb)) {
+                    if (list.get(4).contains(mlfb) && generic) {
                         String poma = list.get(2);
                         if (macro) {
                             if (poma.length() > 2){
@@ -57,12 +57,24 @@ public class FileLoader {
                         } else {
                             r.addResult(poma);
                         }
+                    } else if (list.get(4).startsWith(mlfb)) {
+                        String poma = list.get(2);
+                        if (macro) {
+                            if (poma.length() > 2) {
+                                r.addResult(poma.substring(0, 2));
+                            } else {
+                                r.addResult(poma);
+                            }
+                        } else {
+                            r.addResult(poma);
+                        }
                     }
+
                 });
         return r;
     }
 
-    public void print(){
-        data.forEach(l -> System.out.println(l));
+    public int size(){
+        return data.size();
     }
 }
